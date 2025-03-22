@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SensorsRide</string>
+
+    <string name="close">Close</string>
+    <string name="camera">Camera</string>
+    <string name="is_the_part_ok">Is the part OK?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="next">Next</string>
+    <string name="retake">Retake</string>
+    <string name="switch_camera">Switch camera</string>
+    <string name="pick_video_from_gallery">Pick video from gallery</string>
+    <string name="video_placeholder">Video placeholder</string>
+    <string name="check">Check</string>
+    <string name="video_pause_resume_button">Video Pause/Resume Icon</string>
+    <string name="all_videos_recorded">All videos are recorded.</string>
+    <string name="permission_required_for_gallery">Permission is required to access gallery.</string>
+    <string name="audio_permission_required">Audio permission is required to record video.</string>
+    <string name="video_capture_failed">Video capture failed.</string>
+    <string name="retake_video">Retake video.</string>
+    <string name="failed_to_save_video">Failed to save video: </string>
+    <string name="video_saved">Video saved!</string>
+    <string name="video_list_empty">Video List can\'t be empty</string>
+</resources>
