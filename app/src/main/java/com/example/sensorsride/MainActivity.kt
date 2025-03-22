@@ -35,6 +35,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
@@ -46,6 +47,7 @@ import com.example.sensorsride.domain.getCurrentTime
 import com.example.sensorsride.presentation.DetectionEventItem
 import com.example.sensorsride.presentation.VideoRecorderScreen
 import com.example.sensorsride.presentation.VideoViewModel
+import com.example.sensorsride.ui.theme.Typography
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -159,7 +161,9 @@ class MainActivity : ComponentActivity(), SensorEventListener {
 //                    ) { }
 //                }
 
-                Column(modifier = Modifier.weight(1f).fillMaxWidth()) {
+                Column(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()) {
                     DetectionScreen()
                 }
 
@@ -223,13 +227,24 @@ class MainActivity : ComponentActivity(), SensorEventListener {
         // UI
         Column(modifier = Modifier.fillMaxSize()) {
 
+            if (isRunning.value ==true) {
+
+                Text(text = "Analyzing Data ....",
+                    color = androidx.compose.ui.graphics.Color.Black,
+                    fontSize = Typography.titleLarge.fontSize,
+                    fontFamily = Typography.titleLarge.fontFamily,
+                    modifier = Modifier.fillMaxWidth().padding(top = 24.dp),
+                    textAlign = TextAlign.Center
+                )
+            }
             if (shouldShowResult.value){
                 AccelerationChart(accelerationData)
-
             }
             // List of detections
-            LazyColumn(modifier = Modifier.weight(1f).padding(top = 16.dp)) {
-                val modified  = detections.filterNot { it.title == SPEED_BUMP && it.confidence > 2.0f }
+            LazyColumn(modifier = Modifier
+                .weight(1f)
+                .padding(top = 16.dp)) {
+                val modified  = detections.filterNot { it.title == SPEED_BUMP && it.confidence < 2.0f }
                 items(modified.size) { i ->
                     DetectionEventItem(
                         type = detections[i].title,
@@ -335,7 +350,10 @@ class MainActivity : ComponentActivity(), SensorEventListener {
 
                 chart.invalidate() // Refresh the chart
             },
-            modifier = Modifier.fillMaxWidth().padding(16.dp).fillMaxHeight(0.8f)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+                .fillMaxHeight(0.8f)
         )
     }
 
